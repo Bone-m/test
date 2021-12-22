@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Example</title>
+    <!-- - -->
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>    <div id="container"></div>
+
+<script>
+
+    Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-c.json', function (data) {
+
+        Highcharts.stockChart('container', {
+            accessibility: {
+                description: 'Chart shows Apple stock prices from mid 2008 to mid 2015. It shows steady growth with one significant peak lasting through most of 2012 before normalizing.'
+            },
+
+            title: {
+                text: 'Apple Stock Price 2008 to 2021'
+            },
+
+            subtitle: {
+                text: 'Accessible stock chart demo'
+            },
+
+            rangeSelector: {
+                selected: 1
+            },
+
+            navigator: {
+                series: {
+                    accessibility: {
+                        description: 'Overview series for navigation' // The navigator series could be confusing to screen reader users.
+                    }
+                }
+            },
+
+            series: [{
+                name: 'Apple',
+                data: data,
+                tooltip: {
+                    valueDecimals: 2
+                }
+            }]
+        });
+
+    })
+</script>
+</body>
+</html>
